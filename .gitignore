@@ -1,0 +1,8 @@
+*.pyc
+*.db
+*.log
+*.sqlite3
+*.log
+build/
+*~
+\#*#
