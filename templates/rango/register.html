@@ -1,21 +1,17 @@
-<!DOCTYPE html>
+{% extends 'rango/base.html' %}
 
-<html>
-  <head>
-    <title>Rango</title>
-  </head>
+{% block title %}Login to Rango{% endblock %}
 
-  <body>
+{% block body_block %}
+
     <h1>Register with Rango</h1>
 
     {% if registered %}
       Rango says: <strong>thank you for registering!</strong>
-      <a href="/rango/">Return to the homepage.</a><br />
     {% else %}
       Rango says: <strong>register here!</strong><br />
-      <a href="/rango/">Return to the homepage.</a><br />
-
-      <form id="user_form" method="post" action="/rango/register/" enctype="multipart/form-data">
+      
+      <form id="user_form" method="post" action="{% url 'register' %}" enctype="multipart/form-data">
 
         {% csrf_token %}
       
@@ -29,5 +25,4 @@
       
     {% endif %}
 
-  </body>
-</html>
+{% endblock %}
