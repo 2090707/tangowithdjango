@@ -12,6 +12,12 @@
       <h1>Rango says... hello world!</h1>
     {% endif %}
 
+    {% if visits < 2 %}
+      <h4>This is your first day here!</h4></br>
+    {% else %}
+      <h4>You have accessed this page in {{ visits }} different days.</h4>
+    {% endif %}
+
     <img src="{% static "images/rango.jpg" %}" alt="Picture of Rango" /><br />
     {% if categories %}
       <h3>Categories:</h3></br>
@@ -36,3 +42,4 @@
       </br>
 
 {% endblock %}
+
