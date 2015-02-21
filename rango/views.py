@@ -109,78 +109,80 @@ def add_page(request, category_name_slug):
 
     return render(request, 'rango/add_page.html', context_dict)
 
-def register(request):
-    context_dict = {}
+
+#def register(request):
+#    context_dict = {}
     # successful registration flag
-    registered = False
-
-    if request.method == 'POST':
+#    registered = False
+#
+#    if request.method == 'POST':
         # grab info from the raw form
-        user_form = UserForm(data=request.POST)
-        profile_form = UserProfileForm(data=request.POST)
-
+#        user_form = UserForm(data=request.POST)
+#        profile_form = UserProfileForm(data=request.POST)
+#
         # both forms are valid?
-        if user_form.is_valid() and profile_form.is_valid():
+#        if user_form.is_valid() and profile_form.is_valid():
             # save user's form data to the db
-            user = user_form.save()
+#            user = user_form.save()
 
             # hash password
-            user.set_password(user.password)
-            user.save()
+#            user.set_password(user.password)
+#            user.save()
 
             # sort out the UserProfile instance
-            profile = profile_form.save(commit=False)
-            profile.user = user
-
+#            profile = profile_form.save(commit=False)
+#            profile.user = user
+#
             # was there a picture provided?
-            if 'picture' in request.FILES:
-                profile.picture = request.FILES['picture']
-
-            profile.save()
-            registered = True
-
-        else:
-            print user_form.errors, profile_form.errors
-
-    else:
-        user_form = UserForm()
-        profile_form = UserProfileForm()
-
-    context_dict['user_form'] = user_form
-    context_dict['profile_form'] = profile_form
-    context_dict['registered'] = registered
-    return render(request,
-                  'rango/register.html',
-                  context_dict,)
-
-def user_login(request):
-    
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-
+#            if 'picture' in request.FILES:
+#                profile.picture = request.FILES['picture']
+#
+#            profile.save()
+#            registered = True
+#
+#        else:
+#            print user_form.errors, profile_form.errors
+#
+#    else:
+#        user_form = UserForm()
+#        profile_form = UserProfileForm()
+#
+#    context_dict['user_form'] = user_form
+#    context_dict['profile_form'] = profile_form
+#    context_dict['registered'] = registered
+#    return render(request,
+#                  'rango/register.html',
+#                  context_dict,)
+#
+#def user_login(request):
+#    
+#    if request.method == 'POST':
+#        username = request.POST['username']
+#        password = request.POST['password']
+#
         # check if name/pass combination is valid -> user object
-        user = authenticate(username=username, password=password)
-
-        if user:
-            if user.is_active:
-                login(request, user)
-                return HttpResponseRedirect('/rango/')
-            else:
-                return HttpResponse("Your Rango account is disabled.")
-        else:
-            print "Invalid login details: {0}, {1}".format(username, password)
+#        user = authenticate(username=username, password=password)
+#
+#        if user:
+#            if user.is_active:
+#                login(request, user)
+#                return HttpResponseRedirect('/rango/')
+#            else:
+#                return HttpResponse("Your Rango account is disabled.")
+#        else:
+#            print "Invalid login details: {0}, {1}".format(username, password)
             #return HttpResponse("Invalid login details supplied.<br /><a href='/rango/login'>Try again</a>")
-            return render(request, 'rango/login.html', {'bad_attempt': True})
-
-    else:
-        return render(request, 'rango/login.html', {})
+#            return render(request, 'rango/login.html', {'bad_attempt': True})
+#
+#    else:
+#        return render(request, 'rango/login.html', {})
 
 @login_required
 def restricted(request):
     return render(request, 'rango/restricted.html', {})
 
-@login_required
-def user_logout(request):
-    logout(request)
-    return HttpResponseRedirect('/rango/')
+
+#@login_required
+#def user_logout(request):
+#    logout(request)
+#    return HttpResponseRedirect('/rango/')
