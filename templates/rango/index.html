@@ -7,39 +7,53 @@
 
 {% block body_block %}
     {% if user.is_authenticated %}
+    <div class="page-header">
       <h1>Rango says... hello {{ user.username }}!</h1>
     {% else %}
       <h1>Rango says... hello world!</h1>
     {% endif %}
-
+  </div>
     {% if visits < 2 %}
       <h4>This is your first day here!</h4></br>
     {% else %}
       <h4>You have accessed this page in {{ visits }} different days.</h4>
     {% endif %}
 
-    <img src="{% static "images/rango.jpg" %}" alt="Picture of Rango" /><br />
+    <img src="{% static "images/rango.jpg" %}"  style="margin-bottom:20px;" alt="Picture of Rango" /><br />
+
+
     {% if categories %}
-      <h3>Categories:</h3></br>
-      <ul>
+     <div class="panel panel-primary">
+     <div class="panel-heading">
+      <h3 class="panel-title">Categories:</h3></br>
+     </div>
+
+      <ul class="list-group">
         {% for category in categories %}
     <!-- url.py call not working?!? -->
-    <li><a href="/rango/category/{{ category.slug }}">{{ category.name }}</a></li>
+    <li class="list-group-item"><a href="/rango/category/{{ category.slug }}">{{ category.name }}</a></li>
 {% endfor %}
       </ul>
     {% else %}
       <strong>There are no categories present.</strong>
     {% endif %}
+  </div>
       </br>
+ 
     {% if pages_by_views %}
-      <h3>Top 5 most visited pages:</h3></br>
-      <ul>
+     <div class="panel panel-primary">
+     <div class="panel-heading">
+      <h3 class="panel-title">Top 5 most visited pages:</h3></br>
+     </div>
+       <ul class="list-group">
         {% for page_by_views in pages_by_views %}
-          <li><a href="{{ page_by_views.url }}">{{ page_by_views.title }}</li>
+          <li class="list-group-item"><a href="{{ page_by_views.url }}">{{ page_by_views.title }}</li>
         {% endfor %}
       </ul>
     {% endif %}
       </br>
 
+ 
+ </div>
 {% endblock %}
 

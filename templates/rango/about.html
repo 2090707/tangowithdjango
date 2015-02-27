@@ -5,12 +5,16 @@
 {% block title %}About{% endblock %}
 
 {% block body_block %}
-    <h3>This tutorial has been put together by Aleksandar Ilov, 2090707</h3>
-    <img src="{% static "me.JPG" %}" alt="Picture from the media" />
+  <div class="page-header">
+    <center><h3>This tutorial has been put together by Aleksandar Ilov, 2090707</h3>
+    <img width="120" height="130" src="{% static "me.JPG" %}" alt="Picture from the media" /></center>
+  </div>
+  <center>
     <h4>Rango says here is the about page.</h4><br />
     {% if visits < 2 %}
       <h4>This is your first day here!</h4></br>
     {% else %}
       <h4>You have accessed this page in {{ visits }} different days.</h4>
     {% endif %}
+  </center>
 {% endblock %}
