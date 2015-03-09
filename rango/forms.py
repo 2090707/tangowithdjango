@@ -43,3 +43,9 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ('website', 'picture')
+
+# to edit user info
+class EditUserInfoForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('username', 'email')

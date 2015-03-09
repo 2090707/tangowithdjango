@@ -1,0 +1,12 @@
+{% extends 'rango/base.html' %}
+{% block title%} Profile preferences {% endblock %}
+{% block body_block %}
+<form id="profile_form" method="post" action="{% url 'register_profile' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <br/>
+    <div class="container">
+        {{ profile_form.as_p }}
+        <input type="submit" name="submit" value="Finish profile"/>
+    </div>
+</form>
+{% endblock %}

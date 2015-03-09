@@ -1,0 +1,29 @@
+{% extends 'rango/base.html' %}
+
+{% block body_block %}
+<div class="container">
+  <div class="row">
+    {% for user in users %}
+
+      <div class="col-md-3">
+        {% if user.userprofile.picture %}
+          <img class="img-responsive" src="/media/{{user.userprofile.picture}}" alt="user picture"/>
+        {% else %}
+          <img class="img-responsive" src="/media/default_profile.jpg" alt="user picture"/>
+        {% endif %}
+      </div>
+      <div class="col-md-5">
+        <h2>{{user.username}}</h2>
+        <p>Email: {{user.email}}</p>
+        <p>Website: <a href="{{user.userprofile.website}}">{{user.userprofile.website}}</a></p>
+      </div>
+
+      
+  <div class="row"></div>
+  <br/><br/><br/>
+  {% endfor %}
+
+  </div>
+</div>
+
+{% endblock %}

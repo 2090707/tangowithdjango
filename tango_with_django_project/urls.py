@@ -3,10 +3,11 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from registration.backends.simple.views import RegistrationView
+from django.contrib.auth import views
 
 class MyRegistrationView(RegistrationView):
     def get_success_url(self, request, user):
-        return '/rango/'
+        return '/rango/register_profile'
 
 urlpatterns = patterns('',
     # Examples:
@@ -16,16 +17,13 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^rango/', include('rango.urls')),
     url(r'^accounts/register/$', MyRegistrationView.as_view(), name='registration_register'),
-    (r'^accounts/', include('registration.backends.simple.urls')),
+    url(r'^accounts/', include('registration.backends.simple.urls')),
+    
+    # password change mappings
+    url(r'^password/change/$', views.password_change, name='password_change'),
+    url(r'^password/change/done/$', views.password_change_done, name='password_change_done'),
 )
 
-#if settings.DEBUG:
-#    urlpatterns += patterns(
-#        'django.views.static',
-#        (r'^media/(?P<path>.*)',
-#        'serve',
-#        {'document_root': settings.MEDIA_ROOT}),
-# )
 
 if settings.DEBUG:
     urlpatterns += patterns('',
